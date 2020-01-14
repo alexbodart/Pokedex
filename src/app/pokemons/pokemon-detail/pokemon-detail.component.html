@@ -1,0 +1,50 @@
+<div *ngIf="pokemon">
+  <mat-card>
+    <mat-grid-list cols = "2" rowHeight = "200px">
+      <mat-grid-tile
+        [colspan] = "1"
+        [rowspan] = "1">
+        <mat-list>
+            <img matListAvatar src="../../../assets/img/official-artwork/{{pokemon.id}}.png" alt="img" height="150px" width="150px">
+          <mat-list-item>
+            <div class="id-inside-grid">No. {{pokemon.id | number: '3.'}}</div>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile
+        [colspan] = "1"
+        [rowspan] = "1">
+        <mat-list>
+          <mat-list-item>
+            {{pokemon.name}}
+            <button mat-icon-button (click)="playAudio()">
+              <mat-icon>play_circle_outline</mat-icon>
+            </button>
+            <audio controls autoplay>
+              <source src="../../../assets/audio/{{pokemon.id}}.mp3" type="audio/mp3">
+              Your browser does not support the audio element.
+            </audio>
+          </mat-list-item>
+          <mat-chip-list>
+            <mat-chip *ngFor="let type of pokemon.types">  {{ type }}
+            </mat-chip>
+          </mat-chip-list>
+          <mat-list-item>
+            Taille : {{pokemon.height | number:'.1-1'}} m
+          </mat-list-item>
+          <mat-list-item>
+            Poids : {{pokemon.weight | number:'.1-1'}} kg
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile
+        [colspan] = "2"
+        [rowspan] = "1">{{pokemon.description}}
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+  <a routerLink="/pokemons">
+    <button class="previous"><mat-icon>skip_previous</mat-icon></button>
+  </a>
+
+</div>
