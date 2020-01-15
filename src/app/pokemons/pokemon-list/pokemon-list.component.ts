@@ -9,9 +9,9 @@ import {PagedData} from '../models/paged-data.model';
   styleUrls: ['./pokemon-list.component.scss']
 })
 export class PokemonListComponent implements OnInit {
-  pokemons: Pokemon[][];
+  pokemons: Pokemon[] = [];
   private offset = 0;
-  private limit = 10;
+  private limit = 20;
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit() {
@@ -26,5 +26,13 @@ export class PokemonListComponent implements OnInit {
   onScrollDown() {
     this.limit += 10;
     this.getPokemons();
+  }
+
+  choose(id: number) {
+    this.pokemonService.setPokemonId(id);
+  }
+
+  search(term: string): void {
+    this.pokemonService.searchPokemon(term).subscribe(res => this.pokemons = res.data);
   }
 }

@@ -1,4 +1,4 @@
-<div *ngIf="pokemon">
+<ng-container *ngIf="pokemon">
   <mat-card>
     <mat-grid-list cols = "2" rowHeight = "200px">
       <mat-grid-tile
@@ -43,8 +43,4 @@
       </mat-grid-tile>
     </mat-grid-list>
   </mat-card>
-  <a routerLink="/pokemons">
-    <button class="previous"><mat-icon>skip_previous</mat-icon></button>
-  </a>
-
-</div>
+</ng-container>

@@ -1,5 +1,5 @@
-export interface PagedData<Pokemon> {
-  data: Pokemon[];
+export interface PagedData<T> {
+  data: T[];
   limit: number;
   offset: number;
 }

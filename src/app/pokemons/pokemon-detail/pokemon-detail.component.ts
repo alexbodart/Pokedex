@@ -18,19 +18,20 @@ export class PokemonDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getPokemon();
+    if ( this.pokemonService.getPokemonId()) {
+      this.getPokemon(this.pokemonService.getPokemonId());
+    }
   }
 
-  getPokemon(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.pokemonService.getPokemon(id)
+  getPokemon(pokemonId: number): void {
+    this.pokemonService.getPokemon(pokemonId)
       .subscribe(pokemon => this.pokemon = pokemon);
   }
 
   playAudio() {
     // @ts-ignore
     this.audio = new Audio();
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = this.pokemonService.getPokemonId();
     this.audio.src = '../../../assets/audio/' + id + '.mp3';
     this.audio.load();
     this.audio.play();
