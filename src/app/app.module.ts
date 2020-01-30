@@ -16,33 +16,38 @@ import {
     MatListModule, MatSidenavModule
 } from '@angular/material';
 import { PokemonDetailComponent } from './pokemons/pokemon-detail/pokemon-detail.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {PokedexComponent} from './pokemons/pokedex/pokedex.component';
+import {ConnexionComponent} from './pokemons/connexion/connexion.component';
+import { PokemonTeamComponent } from './pokemons/pokemon-team/pokemon-team.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonListComponent,
     PokemonDetailComponent,
-    PokedexComponent
+    PokedexComponent,
+    ConnexionComponent,
+    PokemonTeamComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        MatListModule,
-        MatIconModule,
-        FormsModule,
-        MatGridListModule,
-        MatCardModule,
-        MatChipsModule,
-        MatButtonModule,
-        InfiniteScrollModule,
-        MatSidenavModule,
-        MatInputModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatListModule,
+    MatIconModule,
+    FormsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatChipsModule,
+    MatButtonModule,
+    InfiniteScrollModule,
+    MatSidenavModule,
+    MatInputModule,
+    ReactiveFormsModule
+  ],
   providers: [{
     provide: MAT_CHIPS_DEFAULT_OPTIONS,
     useValue: {

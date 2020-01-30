@@ -4,12 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { PokemonDetailComponent } from './pokemons/pokemon-detail/pokemon-detail.component';
 import { PokemonListComponent } from './pokemons/pokemon-list/pokemon-list.component';
 import {PokedexComponent} from './pokemons/pokedex/pokedex.component';
+import {ConnexionComponent} from './pokemons/connexion/connexion.component';
+import {PokemonTeamComponent} from './pokemons/pokemon-team/pokemon-team.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/pokedex', pathMatch: 'full' },
   { path: 'pokedex', component: PokedexComponent },
+  { path: 'connexion', component: ConnexionComponent},
   { path: 'pokemons', component: PokemonListComponent },
+  { path: 'team', component: PokemonTeamComponent },
   { path: 'detail/:id', component: PokemonDetailComponent },
 ];
 

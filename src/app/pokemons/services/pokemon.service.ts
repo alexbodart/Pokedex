@@ -4,9 +4,19 @@ import {Observable, of} from 'rxjs';
 import {Pokemon} from '../models/pokemon.model';
 import {PagedData} from '../models/paged-data.model';
 import {catchError, tap} from 'rxjs/operators';
+import {Token} from '../models/token';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
+const token = localStorage.getItem('token');
+const httpOptionsBearer = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': token
+  })
 };
 @Injectable({
   providedIn: 'root'
@@ -29,8 +39,12 @@ export class PokemonService {
   }
 
   getPokemonId() {
-    console.log(this.id);
     return this.id;
+  }
+
+  getTeam(): Observable<number[]> {
+    console.log(token);
+    return this.http.get<number[]>(this.apiUrl + `/trainers/me/team`, httpOptionsBearer);
   }
 
   searchPokemon(term: string): Observable<PagedData<Pokemon>> {
@@ -38,5 +52,13 @@ export class PokemonService {
       return this.getPokemons(0, 20);
     }
     return this.http.get<PagedData<Pokemon>>(this.apiUrl + `/pokemons?search=${term}`);
+  }
+
+  connexion(identifiants): Observable<Token> {
+    return this.http.post<Token>(this.apiUrl + `/auth/login`, identifiants).pipe(tap(_ => this.log(`logs : "${identifiants}"`)));
+  }
+
+  private log(s: string) {
+    console.log(s);
   }
 }
